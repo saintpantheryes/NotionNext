@@ -86,8 +86,9 @@ const MyApp = ({ Component, pageProps }) => {
   const content = (
     <AppErrorBoundary>
       <GlobalContextProvider {...pageProps}>
+        {/* SEO 放在动态加载的主题布局之外：布局模块未就绪时服务端会输出空白，分享预览标签不能跟着丢 */}
+        <SEO {...pageProps} />
         <GLayout {...pageProps}>
-          <SEO {...pageProps} />
           <Component {...pageProps} />
         </GLayout>
         <PWAInstaller NOTION_CONFIG={pageProps?.NOTION_CONFIG} />
